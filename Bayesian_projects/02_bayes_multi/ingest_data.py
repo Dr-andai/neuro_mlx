@@ -32,7 +32,7 @@ class 3: severe stress
 conditions = [
     (pm_values <= 12.0),
     (pm_values > 12.0) & (pm_values <= 35.4),
-    (pm_values > 12.0) & (pm_values <= 55.4),
+    (pm_values > 35.4) & (pm_values <= 55.4),  # was "> 12" — overlapped class 1 range
     (pm_values > 55.4),
 ]
 
@@ -53,8 +53,11 @@ Subtracting the mean and dividing by the standard deviation forces every
 feature to sit on a unified scale centered around 0, with a variance of 1
 """
 
-# Array partitioning
+# Array partitioning — same split index for both features and labels
 split = int(len(X_scaled) * 0.8)
-X_train, X_test = mx.array(X_scaled[:split]), mx.array(X_scaled[split:])
+X_train = mx.array(X_scaled[:split])
+X_test  = mx.array(X_scaled[split:])
+y_train = mx.array(y_raw[:split])   # integer class labels — used by cross_entropy
+y_test  = mx.array(y_raw[split:])
 
 print(f"Train: {X_train.shape}, Test: {X_test.shape}")

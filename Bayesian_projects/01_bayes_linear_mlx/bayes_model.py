@@ -16,7 +16,10 @@ import mlx.nn as nn
 # define a single bayesian layer
 class BayesianLayer(nn.Module):
     def __init__(self): 
-        super().__init__() # initialize weights 
+        super().__init__() # initialize weights
+
+        # # In MLX, trainable parameters MUST be wrapped in mx.array 
+        # inside the constructor so the framework tracks them as state. 
         self.w_mu = mx.array([0.0])
         self.w_rho = mx.array([-3.0])
 

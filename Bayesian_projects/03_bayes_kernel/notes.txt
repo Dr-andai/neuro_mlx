@@ -1,0 +1,56 @@
+kernel
+similarity function.
+A kernel is a way of measuring similarity or influence between two points.
+
+in stats, kernel = weighting function that determines how much nearby observations
+influence an estimate.
+kernel regression, near points matter more than distant points, how much should
+observation i influence the prediction at location x?
+in ml, measure similarity in potentially high-dimensional spaces
+
+Intuitively, the kernel function shrinks the estimated health effects of two 
+individuals with similar exposure profiles toward each other.
+
+in bayesian neural networks, uncertainty comes form distributions over weights
+in gaussian processes, uncertainty coems from the kernel
+
+the kernel defines beliefs about:
+- smoothness
+- periodicity
+- trends
+- roughness
+- correlations
+
+RBF
+periodicity
+linear
+
+bayesian kernel machine regression
+method designed to model complex, non-linear and interacting effeects of multiple
+exposures on an outcome
+
+bkmr:
+y_i = h(Z_i) + X_i^T B + E_i
+- y_i : outcome
+- Z_i : exposure mixture
+- X_i : covariates (age, sex, etc)
+- h(.) : unknown exposure-response function
+
+the idea is that we learn an arbitrary function h(Z) from the data
+
+we assume:
+h ~ GP(0, K)
+- GP: gaussian process
+- K : kernel matrix
+
+instead of finding a single best estimate,
+
+bkmr estimates distributions:
+P(h|data)
+P(B|data)
+P(p|data)
+using MCMC
+you get
+- posterior means
+- credible intervals
+- uncertainty estimates
